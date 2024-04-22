@@ -12,6 +12,23 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        // figma, warna biru dari kanan ke kiri
+        blueA: '#00619a',
+        blueB: '#0077c2',
+        blueC: '#59a5f5',
+        blueD: '#00bfff',
+        blueE: '#c8ffff',
+        blueF: '#4da9ff',
+        // figma, warna hitam dari kanan ke kiri
+        neutralA: '#333333',
+        neutralB: '#5c5c5c',
+        neutralC: '#cccccc',
+        neutralD: '#f5f5f5',
+        neutralE: '#ffffff',
+        neutralF: '#e3e3e3',
+
+      },
     },
   },
   plugins: [],
