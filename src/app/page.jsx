@@ -15,6 +15,7 @@ export default function Home() {
   const [humidity, setHumidity] = useState(0);
   const [location, setLocation] = useState([]);
   const [searched, setSearched] = useState(false);
+  const [found, setFound] = useState(true);
 
   const apiKey = process.env.NEXT_PUBLIC_OW_KEY;
 
@@ -24,12 +25,17 @@ export default function Home() {
     fetch(URL)
       .then(res => res.json())
       .then(data =>{
-        console.log(data, "--data");
-        setTemperature(data.main.temp);
-        setHumidity(data.main.humidity);
-        setLocation([data.name, data.sys.country]);
-        setSearched(true);
-      })
+        if (data.cod == 404 || data.cod == 400) {
+          setFound(false);
+        }
+        else{
+          console.log(data, "--data");
+          setTemperature(data.main.temp);
+          setHumidity(data.main.humidity);
+          setLocation([data.name, data.sys.country]);
+          setSearched(true);
+          setFound(true);
+        }})
       .catch(err=>{
         console.log(err);
       })
@@ -41,7 +47,7 @@ export default function Home() {
 
   const tempCondition = (t) => {
     return (
-      t > 28 ? 
+      t > 27 ? 
       <picture className="">
         <source srcset="https://fonts.gstatic.com/s/e/notoemoji/latest/1f975/512.webp" type="image/webp"/>
         <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f975/512.gif" alt="🥵" width="144" height="144"/>
@@ -76,7 +82,7 @@ export default function Home() {
             </button>
           </div>
           <div className="h-[40vh] w-full rounded-bl-[.8vw] flex text-center">
-            {searched ? 
+            {found ? (searched ? 
             <div className="flex flex-col mx-auto justify-center">
               <span className="">
                 {`Lokasi: ${location[0]}, ${location[1]}`}
@@ -91,6 +97,16 @@ export default function Home() {
               </span>
             </div> :
             <div>
+            </div> ): 
+            <div className="flex flex-col mx-auto justify-start">
+              <picture>
+                <source srcset="https://fonts.gstatic.com/s/e/notoemoji/latest/1f640/512.webp" type="image/webp"/>
+                <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f640/512.gif" alt="🙀" width="188" height="188"/>
+              </picture>
+              <span>
+                {`Data Tidak Ditemukan`}
+              </span>
+
             </div> }
           </div>
           
