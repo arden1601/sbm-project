@@ -92,8 +92,8 @@ export default function PageContent() {
         <img
           src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f975/512.gif"
           alt="🥵"
-          width="144"
-          height="144"
+          width="180"
+          height="180"
         />
       </picture>
     ) : t < 20 ? (
@@ -105,8 +105,8 @@ export default function PageContent() {
         <img
           src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f976/512.gif"
           alt="🥶"
-          width="144"
-          height="144"
+          width="180"
+          height="180"
         />
       </picture>
     ) : (
@@ -118,8 +118,8 @@ export default function PageContent() {
         <img
           src="https://fonts.gstatic.com/s/e/notoemoji/latest/263a_fe0f/512.gif"
           alt="☺"
-          width="144"
-          height="144"
+          width="180"
+          height="180"
         />
       </picture>
     );
@@ -189,10 +189,31 @@ export default function PageContent() {
           </div>
         </div>
         <div className="w-[50%] h-full bg-blueE rounded-r-[.8vw] flex-col justify-center">
-            <span>
-                
+          <div className="w-full h-[6vh] mt-[1vh] flex justify-center">
+            <span className=" text-neutralA mx-auto text-[1.5vw] text-nowrap text-center">
+              {`DATA SENSOR`}
             </span>
-
+          </div>
+          <div className="h-[40vh] w-full rounded-bl-[.8vw] flex text-center">
+            <div className="flex flex-col mx-auto justify-center">
+              {tempCondition(
+                data[data.length - 1]?.temperature
+                  ? data[data.length - 1].temperature
+                  : 0
+              )}
+              <span>{`Suhu: ${
+                data[data.length - 1]?.temperature
+                  ? data[data.length - 1].temperature
+                  : 0
+              }°C`}</span>
+              <br />
+              <span>{`Kelembaban: ${
+                data[data.length - 1]?.humidity
+                  ? data[data.length - 1].humidity
+                  : 0
+              }%`}</span>
+            </div>
+          </div>
         </div>
       </div>
     </main>
